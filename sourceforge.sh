@@ -5,9 +5,9 @@ printf "  \__ \/ /_     / / / / /_/ / /  / / / / /| | / / / / __/ / /_/ /  |  _/
 printf " ___/ / __/    / /_/ / ____/ /__/ /_/ / ___ |/ /_/ / /___/ _, _/   |_|    | |  /_/\_\   |_|   |___ /   \ /   \ /   __/  /   \n"
 printf "/____/_/       \____/_/   /_____\____/_/  |_/_____/_____/_/ |_|    |_|    |_| / /   \ \ | |  |___ /     \_____/    |____/     \n"
 
-printf "Enter Your Source Forge ID : "
+printf " \n Enter Your Source Forge ID : "
 read USER
-printf "\nEnter Your Device Codename : "
+printf "\n Enter Your Device Codename : "
 read DEVICE
 haste() { a=$(cat); curl -X POST -s -d "$a" https://del.dog/documents | awk -F '"' '{print "https://del.dog/"$4}'; }
 HOST=frs.sourceforge.net
