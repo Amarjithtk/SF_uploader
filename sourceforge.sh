@@ -9,18 +9,33 @@ printf " \n Enter Your Source Forge ID : "
 read USER
 printf "\n Enter Your Device Codename : "
 read DEVICE
+
+printf " \n is this PixysOS : "
+read boolean
+
+
+if boolean=no
+then
+  printf " \n Enter rom name ? : "
+  read soft
+
+fi
+read DEVICE
+if boolean=yes
+then
+  HOST=frs.sourceforge.net
+  DIR=/home/frs/project/pixys-os/pie/$DEVICE
+  OUT=/out/target/product/$DEVICE
+  ROM=PixysOS*.zip
+
+else
+  DIR=/home/frs/project/personal-projects/files/Dev
+  ROM=$soft*.zip
+
+fi
 haste() { a=$(cat); curl -X POST -s -d "$a" https://del.dog/documents | awk -F '"' '{print "https://del.dog/"$4}'; }
-HOST=frs.sourceforge.net
-DIR=/home/frs/project/pixys-os/pie/$DEVICE
-OUT=/out/target/product/$DEVICE
-ROM=PixysOS*.zip
+
 
 printf "\nUploading.......\n"
 
-cd $OUT/$DEVICE
-sftp $USER@$HOST <<EOF
-cd $DIR
-put $ROM
-LINK=https://sourceforge.net/projects/pixys-os/files/pie/$DEVICE/$ROM/download
-echo $LINK > url.txt && haste url.txt && rm url.txt
 EOF
