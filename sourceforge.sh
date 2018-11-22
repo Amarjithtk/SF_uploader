@@ -18,15 +18,17 @@ if boolean=no
 then
   printf " \n Enter rom name ? : "
   read soft
-
 fi
-read DEVICE
+
 if boolean=yes
 then
-  HOST=frs.sourceforge.net
   DIR=/home/frs/project/pixys-os/pie/$DEVICE
   OUT=/out/target/product/$DEVICE
   ROM=PixysOS*.zip
+  cd $OUT
+  sftp $USER@frs.sourceforge.net
+  cd $DIR
+  put $ROM
 
 else
   DIR=/home/frs/project/personal-projects/files/Dev
