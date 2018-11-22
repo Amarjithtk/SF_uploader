@@ -13,13 +13,6 @@ read DEVICE
 printf " \n is this PixysOS : "
 read boolean
 
-
-if boolean=no
-then
-  printf " \n Enter rom name ? : "
-  read soft
-fi
-
 if boolean=yes
 then
   DIR=/home/frs/project/pixys-os/pie/$DEVICE
@@ -31,8 +24,14 @@ then
   put $ROM
 
 else
-  DIR=/home/frs/project/personal-projects/files/Dev
-  ROM=$soft*.zip
+  DIRS=/home/frs/project/personal-projects/files/Dev
+  printf " \n Enter rom name ? : "
+  read soft
+  OUT=/out/target/product/$DEVICE
+  cd $OUT
+  sftp $USER@frs.sourceforge.net
+  cd $DIRS
+  put $soft*.zip
 
 fi
 haste() { a=$(cat); curl -X POST -s -d "$a" https://del.dog/documents | awk -F '"' '{print "https://del.dog/"$4}'; }
